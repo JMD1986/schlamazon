@@ -16,8 +16,8 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= product.title %></td>
-        <td><%= product.price %></td>
+        <td><%= link_to product.title, product %></td>
+        <td><%= product.price %>$</td>
         <td><%= product.description %></td>
         <td><%= product.inventory %></td>
         <td><%= link_to 'Show', product %></td>
@@ -30,4 +30,5 @@
 
 <br>
 
+<%= will_paginate @products %>
 <%= link_to 'New Product', new_product_path %>
