@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625213148) do
+ActiveRecord::Schema.define(version: 20150626204310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
-    t.boolean  "completed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "completed",  default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
@@ -28,31 +28,32 @@ ActiveRecord::Schema.define(version: 20150625213148) do
   create_table "product_orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "order_id"
-    t.integer  "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "quantity",   default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "product_orders", ["order_id"], name: "index_product_orders_on_order_id", using: :btree
   add_index "product_orders", ["user_id"], name: "index_product_orders_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "price"
-    t.text     "description"
-    t.integer  "inventory"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "title",                    null: false
+    t.integer  "price",                    null: false
+    t.text     "description",              null: false
+    t.integer  "inventory",   default: 10
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "imageurl"
+    t.string   "category"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
+    t.string   "name",                           null: false
+    t.string   "email",                          null: false
     t.string   "password_digest"
-    t.boolean  "admin"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.boolean  "admin",           default: true
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_foreign_key "orders", "users"

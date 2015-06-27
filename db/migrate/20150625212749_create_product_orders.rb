@@ -3,7 +3,7 @@ class CreateProductOrders < ActiveRecord::Migration
     create_table :product_orders do |t|
       t.belongs_to :user, index: true, foreign_key: true
       t.belongs_to :order, index: true, foreign_key: true
-      t.integer :quantity
+      t.integer :quantity, default: 0
 
       t.timestamps null: false
     end
