@@ -6,6 +6,10 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+<header class=main>
+  <h1>Schlamazon</h1>
+      <%= react_component("Navigation") %>
+  </header>
 <body>
 <div class="container">
       <%= yield %>

@@ -6,7 +6,9 @@
   user.password_confirmation = user.name
   user.save
 
-  product = Product.create( category: Faker::Commerce.department,
+  category = ["movies", "books", "games", "toys", "furniture", "electronics", "weapons", "hats"]
+
+  product = Product.create( category: category.sample,
                             title: Faker::Commerce.product_name,
                             price: Faker::Commerce.price,
                             description: Faker::Lorem.sentence,
